@@ -27,10 +27,12 @@ export function useLang() {
     }
 
     function replacePlaceholders(text: string, replaces: Replaces): string {
-        return Object.entries(replaces).reduce(
-            (acc, [key, val]) => acc.replaceAll(`{${key}}`, String(val)),
-            text
-        )
+        return Object.entries(replaces).reduce((acc, [key, val]) => {
+            const value = String(val)
+            return acc
+                .replaceAll(`:${key}`, value)
+                .replaceAll(`{${key}}`, value)
+        }, text)
     }
 
     function getValueFromKey(key: string): string | undefined {
