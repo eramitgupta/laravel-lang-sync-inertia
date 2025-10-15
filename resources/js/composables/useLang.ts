@@ -28,7 +28,7 @@ export function useLang() {
 
     function replacePlaceholders(text: string, replaces: Replaces): string {
         return Object.entries(replaces).reduce(
-            (acc, [key, val]) => acc.replaceAll(`{${key}}`, String(val)),
+            (acc, [key, val]) => acc.replaceAll(`:${key}`, String(val)).replaceAll(`{${key}}`, String(val)),
             text
         )
     }
