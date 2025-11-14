@@ -252,7 +252,7 @@ You can customize the language directory by modifying `config/inertia-lang.php`:
 
 ```php
 return [
-    'lang_path' => lang_path(), // Default: /resources/lang
+    'lang_path' => resource_path('lang'), // Default: /resources/lang
 ];
 ```
 

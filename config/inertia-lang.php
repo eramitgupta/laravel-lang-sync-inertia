@@ -15,6 +15,6 @@ return [
     |
     */
 
-    'lang_path' => lang_path(),
+    'lang_path' => resource_path('lang'),
 
 ];
