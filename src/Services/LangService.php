@@ -13,7 +13,7 @@ class LangService
         }
 
         $lang = app()->getLocale();
-        $basePath = rtrim(config('lang-manager.lang_path', lang_path()), '/');
+        $basePath = rtrim(config('inertia-lang.lang_path', lang_path()), '/');
         $path = "{$basePath}/{$lang}/{$file}.php";
 
         $this->loaded[$file] = file_exists($path) ? require $path : [];
