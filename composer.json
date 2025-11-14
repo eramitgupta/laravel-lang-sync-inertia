@@ -1,20 +1,28 @@
 {
     "name": "erag/laravel-lang-sync-inertia",
-    "description": "A Laravel package for syncing and managing language translations with Inertia.js integration, allowing easy management of multi-language support in Laravel applications.",
+    "description": "A powerful Laravel package for syncing and managing language translations across backend and Inertia.js (Vue/React) frontends, offering effortless localization, auto-sync features, and smooth multi-language support for modern Laravel applications.",
     "license": "MIT",
     "keywords": [
         "laravel",
+        "inertia",
+        "inertiajs",
         "translations",
         "localization",
+        "i18n",
         "multi-language",
+        "language-sync",
         "lang-sync",
+        "translation-sync",
         "laravel-inertia",
+        "inertia-lang",
         "lang-manager",
-        "laravel-lang-sync",
-        "lang-sync-inertia",
-        "language-files",
-        "dynamic-translations",
-        "language-helper"
+        "language-manager",
+        "laravel-l10n",
+        "laravel-i18n",
+        "vue i18n",
+        "react i18n",
+        "translation-helper",
+        "dynamic-translations"
     ],
     "authors": [
         {
