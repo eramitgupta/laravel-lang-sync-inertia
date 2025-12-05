@@ -43,13 +43,18 @@ To publish the configuration and composables, run:
 php artisan erag:install-lang
 ```
 
-This will publish:
+---
 
-* ✅ `config/inertia-lang.php` — for customizing the language path
-* ✅ `resources/js/composables/useLang.ts` — for Vue (if selected)
-* ✅ `resources/js/hooks/useLang.tsx` — for React (if selected)
+# ⚠️ Required for Frontend (Vue/React)
 
-During installation, you'll be prompted to choose either **Vue** or **React** for your frontend framework.
+To use translations on your frontend, **📦 you must install the NPM companion package**:
+
+```bash
+npm install @erag/lang-sync-inertia
+```
+
+📘 Full frontend documentation:
+➡ [https://www.npmjs.com/package/@erag/lang-sync-inertia](https://www.npmjs.com/package/@erag/lang-sync-inertia)
 
 ---
 
@@ -135,9 +140,9 @@ public function login()
 </template>
 
 <script setup>
-import { useLang } from '@/composables/useLang'
+import { vueLang } from '@erag/lang-sync-inertia'
 
-const { trans, __ } = useLang()
+const { trans, __ } = vueLang()
 </script>
 ```
 
@@ -145,10 +150,10 @@ const { trans, __ } = useLang()
 
 ```tsx
 import React from 'react'
-import { useLang } from '@/hooks/useLang'
+import { reactLang } from '@erag/lang-sync-inertia'
 
 export default function Login() {
-    const { trans, __ } = useLang()
+    const { trans, __ } = reactLang()
 
     return (
         <div>
@@ -258,12 +263,10 @@ return [
 
 ---
 
-## 🧩 Composables Location
+## 🧩 Through:
 
-* **Vue:** `resources/js/composables/useLang.ts`
-* **React:** `resources/js/hooks/useLang.tsx`
-
-You can modify the location or structure of these files by adjusting the published files.
+* `vueLang()` — Vue 3
+* `reactLang()` — React
 
 ---
 

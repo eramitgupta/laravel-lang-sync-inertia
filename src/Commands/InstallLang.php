@@ -3,6 +3,7 @@
 namespace LaravelLangSyncInertia\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Process;
 
 class InstallLang extends Command
 {
@@ -20,32 +21,16 @@ class InstallLang extends Command
         $this->info('✅ Configuration published successfully.');
         $this->newLine();
 
-        // Ask for frontend framework
-        $choice = $this->choice(
-            '🎯 Which frontend framework are you using?',
-            ['Vue.js', 'React.js'],
-            0
-        );
+        $this->info('📦 Installing frontend helper via NPM...');
 
-        if ($choice === 'Vue.js') {
-            $this->info('📦 Publishing Vue composable...');
-            $this->call('vendor:publish', [
-                '--tag' => 'erag:publish-lang-composable-vue',
-                '--force' => true,
-            ]);
-            $this->info('✅ Vue composable published successfully.');
+        $result = Process::run('npm install @erag/lang-sync-inertia');
+
+        if ($result->successful()) {
+            $this->info('✅ NPM package installed successfully.');
+        } else {
+            $this->error('❌ Failed to install NPM package.');
+            $this->line($result->errorOutput());
         }
 
-        if ($choice === 'React.js') {
-            $this->info('📦 Publishing React composable...');
-            $this->call('vendor:publish', [
-                '--tag' => 'erag:publish-lang-composable-react',
-                '--force' => true,
-            ]);
-            $this->info('✅ React composable published successfully.');
-        }
-
-        $this->newLine();
-        $this->info('🎉 LaravelLangSyncInertia installation completed!');
     }
 }
