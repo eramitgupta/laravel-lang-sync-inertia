@@ -5,7 +5,7 @@ namespace LaravelLangSyncInertia\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Process;
 
-class InstallLang extends Command
+class InstallLangCommand extends Command
 {
     protected $signature = 'erag:install-lang';
 
