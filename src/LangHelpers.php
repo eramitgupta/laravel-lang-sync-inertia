@@ -14,7 +14,6 @@ if (! function_exists('syncLangFiles')) {
     }
 }
 
-
 /**
  * WRITE generated files to resources/js/lang
  */
