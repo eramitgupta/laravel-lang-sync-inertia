@@ -6,7 +6,8 @@ use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
-use LaravelLangSyncInertia\Commands\InstallLang;
+use LaravelLangSyncInertia\Commands\GenerateLangCommand;
+use LaravelLangSyncInertia\Commands\InstallLangCommand;
 use LaravelLangSyncInertia\Facades\Lang;
 use LaravelLangSyncInertia\Middleware\ShareLangTranslations;
 
@@ -38,7 +39,8 @@ class LangSyncInertiaServiceProvider extends ServiceProvider
     protected function registerCommands(): void
     {
         $this->commands([
-            InstallLang::class,
+            InstallLangCommand::class,
+            GenerateLangCommand::class,
         ]);
     }
 
@@ -74,6 +76,16 @@ class LangSyncInertiaServiceProvider extends ServiceProvider
 
     protected function shareLangWithInertia(): void
     {
-        Inertia::share('lang', fn () => Lang::getLoaded());
+        $relativePath = str_replace(
+            base_path().DIRECTORY_SEPARATOR,
+            '',
+            outputPathLang()
+        );
+
+        Inertia::share('pageLang', fn () => [
+            'lang' => Lang::getLoaded(),
+            'locale' => app()->getLocale(),
+            'outputPath' => $relativePath,
+        ]);
     }
 }
