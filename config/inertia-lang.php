@@ -15,4 +15,15 @@ return [
 
     'lang_path' => base_path('lang'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Output Path (Exported Files)
+    |--------------------------------------------------------------------------
+    |
+    | Where the package will write generated files
+    | like JSON for frontend tooling.
+    |
+    */
+
+    'output_lang' => resource_path('js/lang'),
 ];
