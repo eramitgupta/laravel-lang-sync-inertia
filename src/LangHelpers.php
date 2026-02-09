@@ -13,13 +13,3 @@ if (! function_exists('syncLangFiles')) {
         return Lang::getFile($fileName);
     }
 }
-
-/**
- * WRITE generated files to resources/js/lang
- */
-if (! function_exists('outputPathLang')) {
-    function outputPathLang(): string
-    {
-        return resource_path('js/lang');
-    }
-}

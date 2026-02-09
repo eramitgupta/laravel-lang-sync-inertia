@@ -4,6 +4,7 @@ namespace LaravelLangSyncInertia;
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 use LaravelLangSyncInertia\Commands\GenerateLangCommand;
@@ -76,16 +77,47 @@ class LangSyncInertiaServiceProvider extends ServiceProvider
 
     protected function shareLangWithInertia(): void
     {
-        $relativePath = str_replace(
-            base_path().DIRECTORY_SEPARATOR,
-            '',
-            outputPathLang()
-        );
+        Inertia::share('pageLang', function () {
+            $locale = app()->getLocale();
 
-        Inertia::share('pageLang', fn () => [
-            'lang' => Lang::getLoaded(),
-            'locale' => app()->getLocale(),
-            'outputPath' => $relativePath,
-        ]);
+            $runtimeLang = Lang::getLoaded();
+
+            $jsonLang = $this->loadGeneratedLangJson($locale);
+
+            return [
+                'lang' => $jsonLang
+                    ? array_replace_recursive($jsonLang, $runtimeLang)
+                    : $runtimeLang,
+
+                'locale' => $locale,
+            ];
+        });
+    }
+
+    private function loadGeneratedLangJson(string $locale): array
+    {
+        $basePath = rtrim(
+            (string) config('inertia-lang.output_lang'),
+            DIRECTORY_SEPARATOR
+        );
+        $localePath = $basePath.DIRECTORY_SEPARATOR.$locale;
+
+        if (! File::isDirectory($localePath)) {
+            return [];
+        }
+
+        $jsonFiles = File::glob($localePath.DIRECTORY_SEPARATOR.'*.json');
+
+        return collect($jsonFiles)
+            ->mapWithKeys(function ($file) {
+                $key = pathinfo($file, PATHINFO_FILENAME);
+                $content = File::get($file);
+                $decoded = json_decode($content, true);
+
+                return (json_last_error() === JSON_ERROR_NONE && is_array($decoded))
+                    ? [$key => $decoded]
+                    : [];
+            })
+            ->all();
     }
 }
