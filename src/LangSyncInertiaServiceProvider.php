@@ -77,20 +77,16 @@ class LangSyncInertiaServiceProvider extends ServiceProvider
 
     protected function shareLangWithInertia(): void
     {
-        Inertia::share('pageLang', function () {
+        Inertia::share('lang', function () {
             $locale = app()->getLocale();
 
             $runtimeLang = Lang::getLoaded();
 
             $jsonLang = $this->loadGeneratedLangJson($locale);
 
-            return [
-                'lang' => $jsonLang
-                    ? array_replace_recursive($jsonLang, $runtimeLang)
-                    : $runtimeLang,
-
-                'locale' => $locale,
-            ];
+            return $jsonLang
+                ? array_replace_recursive($jsonLang, $runtimeLang)
+                : $runtimeLang;
         });
     }
 
