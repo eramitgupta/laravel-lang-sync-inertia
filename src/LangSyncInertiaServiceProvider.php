@@ -4,9 +4,11 @@ namespace LaravelLangSyncInertia;
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
-use LaravelLangSyncInertia\Commands\InstallLang;
+use LaravelLangSyncInertia\Commands\GenerateLangCommand;
+use LaravelLangSyncInertia\Commands\InstallLangCommand;
 use LaravelLangSyncInertia\Facades\Lang;
 use LaravelLangSyncInertia\Middleware\ShareLangTranslations;
 
@@ -38,7 +40,8 @@ class LangSyncInertiaServiceProvider extends ServiceProvider
     protected function registerCommands(): void
     {
         $this->commands([
-            InstallLang::class,
+            InstallLangCommand::class,
+            GenerateLangCommand::class,
         ]);
     }
 
@@ -74,6 +77,43 @@ class LangSyncInertiaServiceProvider extends ServiceProvider
 
     protected function shareLangWithInertia(): void
     {
-        Inertia::share('lang', fn () => Lang::getLoaded());
+        Inertia::share('lang', function () {
+            $locale = app()->getLocale();
+
+            $runtimeLang = Lang::getLoaded();
+
+            $jsonLang = $this->loadGeneratedLangJson($locale);
+
+            return $jsonLang
+                ? array_replace_recursive($jsonLang, $runtimeLang)
+                : $runtimeLang;
+        });
+    }
+
+    private function loadGeneratedLangJson(string $locale): array
+    {
+        $basePath = rtrim(
+            (string) config('inertia-lang.output_lang'),
+            DIRECTORY_SEPARATOR
+        );
+        $localePath = $basePath.DIRECTORY_SEPARATOR.$locale;
+
+        if (! File::isDirectory($localePath)) {
+            return [];
+        }
+
+        $jsonFiles = File::glob($localePath.DIRECTORY_SEPARATOR.'*.json');
+
+        return collect($jsonFiles)
+            ->mapWithKeys(function ($file) {
+                $key = pathinfo($file, PATHINFO_FILENAME);
+                $content = File::get($file);
+                $decoded = json_decode($content, true);
+
+                return (json_last_error() === JSON_ERROR_NONE && is_array($decoded))
+                    ? [$key => $decoded]
+                    : [];
+            })
+            ->all();
     }
 }

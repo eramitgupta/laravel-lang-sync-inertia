@@ -22,6 +22,7 @@
 * 🧵 Built-in middleware for automatic sharing
 * 🛠️ Helper functions like `trans()` and `__()` for frontend usage
 * 🌍 Automatically switches language folder based on current Laravel locale
+* 🆕 Generate frontend-ready JSON language files via Artisan command
 
 ---
 
@@ -257,8 +258,75 @@ You can customize the language directory by modifying `config/inertia-lang.php`:
 
 ```php
 return [
-    'lang_path' => base_path('lang'), // Default: /lang
+
+    /*
+       |--------------------------------------------------------------------------
+       | Language Files Base Path
+       |--------------------------------------------------------------------------
+       |
+       | Specifies the base directory where language files are stored.
+       | By default, it points to the "lang" folder in the project root
+       | using Laravel's base_path() helper.
+       |
+       */
+
+    'lang_path' => base_path('lang'),
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Output Path (Exported Files)
+    |--------------------------------------------------------------------------
+    |
+    | Where the package will write generated files
+    | like JSON for frontend tooling.
+    |
+    */
+
+    'output_lang' => resource_path('js/lang'),
 ];
+```
+
+---
+
+## 🆕 JSON File Support — Command
+This Artisan command scans all locale folders in your `lang_path` and converts every `.php` translation file into a `.json` file — ready for direct frontend consumption without needing Inertia shared props.
+
+### Run the Command
+
+```bash
+php artisan erag:generate-lang
+```
+### Example
+
+**Input:** `resources/lang/en/auth.php`
+
+```php
+return [
+    'welcome'  => 'Welcome, {name}!',
+    'greeting' => 'Hello!',
+];
+```
+
+**Output:** `resources/js/lang/en/auth.json`
+
+```json
+{
+    "welcome": "Welcome, {name}!",
+    "greeting": "Hello!"
+}
+```
+
+### Generated Output Structure
+
+```
+resources/js/lang/
+├── en/
+│   ├── auth.json
+│   ├── validation.json
+│   └── pagination.json
+├── hi/
+│   ├── auth.json
+│   └── validation.json
 ```
 
 ---
