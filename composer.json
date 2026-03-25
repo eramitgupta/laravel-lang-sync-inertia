@@ -1,4 +1,5 @@
 {
+    "$schema": "https://getcomposer.org/schema.json",
     "name": "erag/laravel-lang-sync-inertia",
     "description": "A powerful Laravel package for syncing and managing language translations across backend and Inertia.js (Vue/React) frontends, offering effortless localization, auto-sync features, and smooth multi-language support for modern Laravel applications.",
     "license": "MIT",
