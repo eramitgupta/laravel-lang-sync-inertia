@@ -1,8 +1,9 @@
-# 🌐 Laravel Easy Translation Sync with Inertia (Vue.js / React)
+# 🌐 Laravel Lang Sync Inertia
 
 <center>
     <img width="956" alt="Screenshot" src="https://github.com/user-attachments/assets/bbefb4c4-e435-45ab-954a-17eafa1405ee">
 </center>
+
 <div align="center">
 
 [![Packagist License](https://img.shields.io/badge/Licence-MIT-blue)](https://github.com/eramitgupta/laravel-lang-sync-inertia/blob/main/LICENSE)
@@ -11,34 +12,39 @@
 
 </div>
 
-**Laravel Lang Sync Inertia** helps you add different languages to your Laravel app with Vue or React. It makes translations easy! 
+**Laravel Lang Sync Inertia** is a Laravel package that bridges your backend translation files with your Inertia.js frontend (Vue 3 or React). Load any language file in a controller and access it instantly on the frontend — no manual prop passing required.
+
+---
 
 ## ✨ Features
 
-* ⚙️ Inertia.js integration with automatic sharing
-* 📂 Load single or multiple language files
-* 🔄 Dynamic replacement support in translations
-* 🧩 Supports both Vue.js and React
-* 🧵 Built-in middleware for automatic sharing
-* 🛠️ Helper functions like `trans()` and `__()` for frontend usage
-* 🌍 Automatically switches language folder based on current Laravel locale
-* 🆕 Generate frontend-ready JSON language files via Artisan command
+- ⚙️ Automatic translation sharing via Inertia.js middleware
+- 📂 Load single or multiple language files with one call
+- 🔄 Dynamic placeholder replacement — `{name}` syntax
+- 🧩 Works with both **Vue 3** and **React**
+- 🌍 Auto-switches locale folder based on Laravel's current locale
+- 🆕 Artisan command to export `.php` lang files to frontend-ready `.json`
+- 🛠️ Clean helper API: `trans()` and `__()`
 
 ---
 
 ## 📦 Installation
 
-To install the package, run the following command via Composer:
+**Step 1** — Install the package via Composer:
 
 ```bash
 composer require erag/laravel-lang-sync-inertia
 ```
 
----
+**Step 2** — Publish Laravel's default language files (if not already published):
 
-## 🛠️ Publish Configuration & Composables
+```bash
+php artisan lang:publish
+```
 
-To publish the configuration and composables, run:
+> 📁 This creates the `lang/` directory in your project root with default Laravel translation files.
+
+**Step 3** — Publish the package config and composables:
 
 ```bash
 php artisan erag:install-lang
@@ -46,115 +52,86 @@ php artisan erag:install-lang
 
 ---
 
-# ⚠️ Required for Frontend (Vue/React)
+## ⚠️ Frontend Companion Package (Required)
 
-To use translations on your frontend, **📦 you must install the NPM companion package**:
+To use translations in Vue or React, install the NPM package:
 
 ```bash
 npm install @erag/lang-sync-inertia
 ```
 
-📘 Full frontend documentation:
-➡ [https://www.npmjs.com/package/@erag/lang-sync-inertia](https://www.npmjs.com/package/@erag/lang-sync-inertia)
+📘 Full frontend docs: [npmjs.com/package/@erag/lang-sync-inertia](https://www.npmjs.com/package/@erag/lang-sync-inertia)
 
 ---
 
-## 🚀 Usage Guide: `syncLangFiles()`
+## 🚀 Usage — `syncLangFiles()`
 
-The `syncLangFiles()` function is a Laravel helper provided by this package. Use it inside your **controller methods** to load translation files and automatically **share them with your Vue or React frontend via Inertia.js**.
+`syncLangFiles()` is a global Laravel helper provided by this package. Call it inside any controller method to load translation files and share them with your frontend via Inertia.
 
-> ✅ Think of `syncLangFiles()` as a bridge between Laravel’s backend translations and your Inertia-powered frontend.
-
----
-
-### 🧠 How to Use
+> ✅ Think of `syncLangFiles()` as a bridge — it reads your `.php` lang files on the backend and passes them as Inertia shared props to your frontend components.
 
 ```php
-// Load and sync a single translation file
+// Single file
 syncLangFiles('auth');
 
-// Load and sync multiple translation files
+// Multiple files
 syncLangFiles(['auth', 'validation', 'pagination']);
 ```
 
 ---
 
-### ✅ Supported Inputs
+## 🔁 Step-by-Step Example
 
-The `syncLangFiles()` function supports:
+### 1. Define a Language File
 
-* A **string**: For a single translation file
-  → `syncLangFiles('auth')`
-
-* An **array of strings**: For multiple translation files
-  → `syncLangFiles(['auth', 'validation'])`
-
----
-
-### 🧪 How It Works
-
-Suppose you have the following language file:
-
-📁 **`resources/lang/en/auth.php`**
+📁 `resources/lang/en/auth.php`
 
 ```php
 return [
-    'welcome' => 'Welcome, {name}!',
     'greeting' => 'Hello!',
+    'welcome'  => 'Welcome, {name}!',
 ];
 ```
 
-Now, you want to show `auth.welcome` and `auth.greeting` on the frontend using Vue or React.
-
----
-
-### 🔁 Step-by-Step Example
-
-#### 🔹 1. Load Translations in Controller
+### 2. Load It in the Controller
 
 ```php
 use Inertia\Inertia;
 
 public function login()
 {
-    // Load the auth.php language file
     syncLangFiles('auth');
 
     return Inertia::render('Login');
 }
 ```
 
-🧠 This loads the file `resources/lang/en/auth.php` based on the current Laravel locale and shares its content with Inertia.
+This loads `resources/lang/{locale}/auth.php` based on `App::getLocale()` and shares it automatically with Inertia.
 
----
+### 3. Use It on the Frontend
 
-### 💡 Frontend Usage
-
-#### ✅ Vue Example
+#### ✅ Vue 3
 
 ```vue
-<template>
-    <div>
-        <h1>{{ __('auth.greeting') }}</h1>
-        <p>{{ trans('auth.welcome', { name: 'John' }) }}</p>
-    </div>
-</template>
-
 <script setup>
-import { vueLang } from '@erag/lang-sync-inertia'
+import { lang } from '@erag/lang-sync-inertia/vue'
 
-const { trans, __ } = vueLang()
+const { trans, __ } = lang()
 </script>
+
+<template>
+    <h1>{{ __('auth.greeting') }}</h1>
+    <p>{{ trans('auth.welcome', { name: 'John' }) }}</p>
+</template>
 ```
 
-#### ✅ React Example
+#### ✅ React
 
 ```tsx
-import React from 'react'
-import { reactLang } from '@erag/lang-sync-inertia'
+import { lang } from '@erag/lang-sync-inertia/react'
 
 export default function Login() {
-    const { trans, __ } = reactLang()
+    const { trans, __ } = lang()
 
     return (
         <div>
@@ -165,11 +142,7 @@ export default function Login() {
 }
 ```
 
----
-
-### 📤 Output on Page
-
-When the above code is rendered, this will be the output:
+### 📤 Output
 
 ```
 Hello!
@@ -178,37 +151,76 @@ Welcome, John!
 
 ---
 
-### 🧠 Notes on `trans()` vs `__()`
+## 🧪 How It Works
 
-| Function  | Use Case | Description                                                  |
-| --------- | -------- | ------------------------------------------------------------ |
-| `trans()` | Advanced | Use when you need to pass dynamic placeholders like `{name}` |
-| `__()`    | Simple   | Shortcut for quick access to translated strings              |
+When you call `syncLangFiles('auth')` in your controller:
 
-✅ You can use them interchangeably for basic translations.
-✅ Both support placeholder replacement.
+1. Laravel reads `resources/lang/{locale}/auth.php` based on `App::getLocale()`
+2. The translation array is passed to Inertia as a shared prop under `page.props.lang`
+3. The frontend helper (`lang()`) reads from `page.props.lang` and resolves keys like `auth.greeting`
+4. Placeholders like `{name}` are replaced at runtime with the values you pass
+
+```
+Controller → syncLangFiles('auth')
+    ↓
+Laravel reads resources/lang/en/auth.php
+    ↓
+Inertia shares → page.props.lang.auth
+    ↓
+Frontend → __('auth.greeting') or trans('auth.welcome', { name: 'Amit' })
+    ↓
+Output → "Hello!" / "Welcome, Amit!"
+```
 
 ---
 
-### 🛠 Example with Plain String
+## 🧠 `trans()` vs `__()`
 
-Sometimes, you might want to append something without a key:
+| Function  | Best For | Description |
+|-----------|----------|-------------|
+| `trans()`  | Dynamic values | Use when passing placeholders like `{ name }` |
+| `__()`     | Simple lookups | Shortcut for quick string access |
 
-```js
-__('auth.welcome', 'Vue Developer')
-// Output: "Welcome, {name}! Vue Developer" (if placeholder is not used)
-```
+Both functions support placeholder replacement. `trans()` is recommended when replacements are always present.
 
-But recommended usage is always with an object:
+```ts
+// Simple
+__('auth.greeting')
+// → "Hello!"
 
-```js
+// With replacement
 trans('auth.welcome', { name: 'Amit' })
-// Output: "Welcome, Amit!"
+// → "Welcome, Amit!"
 ```
 
 ---
 
-## 📡 Access Inertia Shared Props
+## 🛠 Example with Plain String
+
+Sometimes you may pass a plain string instead of a replacement object:
+
+```ts
+__('auth.welcome', 'Amit')
+// → "Welcome, {name}!" (placeholder is NOT replaced — string is appended as-is)
+```
+
+> ⚠️ This does **not** replace `{name}`. Always use an object when you need placeholder replacement.
+
+The correct approach:
+
+```ts
+trans('auth.welcome', { name: 'Amit' })
+// → "Welcome, Amit!"
+
+__('auth.welcome', { name: 'Amit' })
+// → "Welcome, Amit!"
+```
+
+---
+
+## 📡 Access Raw Inertia Props
+
+If you need the full translation object directly:
 
 **Vue:**
 
@@ -226,13 +238,11 @@ import { usePage } from '@inertiajs/react'
 const { lang } = usePage().props
 ```
 
-You can directly access the full language object shared by Inertia.
-
 ---
 
-## 🗂️ Translation File Location
+## 🗂️ Translation File Structure
 
-Language files are loaded based on the current Laravel locale. By default, Laravel uses `resources/lang/{locale}` structure:
+Language files are loaded dynamically based on `App::getLocale()`:
 
 ```
 resources/lang/
@@ -242,68 +252,52 @@ resources/lang/
 │   └── auth.php
 ```
 
-When calling:
-
-```php
-syncLangFiles('auth');
-```
-
-It dynamically loads `resources/lang/{locale}/auth.php`.
+Calling `syncLangFiles('auth')` loads `resources/lang/{locale}/auth.php` automatically.
 
 ---
 
 ## ⚙️ Configuration
 
-You can customize the language directory by modifying `config/inertia-lang.php`:
+After publishing, customize `config/inertia-lang.php`:
 
 ```php
 return [
 
     /*
-       |--------------------------------------------------------------------------
-       | Language Files Base Path
-       |--------------------------------------------------------------------------
-       |
-       | Specifies the base directory where language files are stored.
-       | By default, it points to the "lang" folder in the project root
-       | using Laravel's base_path() helper.
-       |
-       */
-
+    |--------------------------------------------------------------------------
+    | Language Files Base Path
+    |--------------------------------------------------------------------------
+    | The directory where your .php language files are stored.
+    */
     'lang_path' => base_path('lang'),
-    
+
     /*
     |--------------------------------------------------------------------------
-    | Output Path (Exported Files)
+    | Output Path (Exported JSON Files)
     |--------------------------------------------------------------------------
-    |
-    | Where the package will write generated files
-    | like JSON for frontend tooling.
-    |
+    | Where generated .json files will be written by the Artisan command.
     */
-
     'output_lang' => resource_path('js/lang'),
+
 ];
 ```
 
 ---
 
-## 🆕 JSON File Support — Command
-This Artisan command scans all locale folders in your `lang_path` and converts every `.php` translation file into a `.json` file — ready for direct frontend consumption without needing Inertia shared props.
+## 🆕 Artisan Command — Export to JSON
 
-### Run the Command
+Generate frontend-ready `.json` files from your `.php` language files — useful when you want to use translations without Inertia shared props.
 
 ```bash
 php artisan erag:generate-lang
 ```
-### Example
 
 **Input:** `resources/lang/en/auth.php`
 
 ```php
 return [
-    'welcome'  => 'Welcome, {name}!',
     'greeting' => 'Hello!',
+    'welcome'  => 'Welcome, {name}!',
 ];
 ```
 
@@ -311,12 +305,12 @@ return [
 
 ```json
 {
-    "welcome": "Welcome, {name}!",
-    "greeting": "Hello!"
+    "greeting": "Hello!",
+    "welcome": "Welcome, {name}!"
 }
 ```
 
-### Generated Output Structure
+Generated structure:
 
 ```
 resources/js/lang/
@@ -331,20 +325,12 @@ resources/js/lang/
 
 ---
 
-## 🧩 Through:
-
-* `vueLang()` — Vue 3
-* `reactLang()` — React
-
----
-
 ## 📄 License
 
-This package is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+Licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ---
 
 ## 🤝 Contributing
 
-Pull requests and issues are welcome!
-Let’s work together to improve localization in Laravel! 💬
+Pull requests and issues are welcome! Let's make Laravel localization better together. 💬
