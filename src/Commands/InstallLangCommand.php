@@ -12,12 +12,12 @@ class InstallLangCommand extends Command
 
     public function handle()
     {
-        $this->components->info('Publishing language configuration...');
+        $this->info('Publishing language configuration...');
         $this->call('vendor:publish', [
             '--tag' => 'erag:publish-lang-config',
             '--force' => true,
         ]);
-        $this->components->info('Language configuration published successfully.');
+        $this->info('Language configuration published successfully.');
         $this->newLine();
     }
 }
