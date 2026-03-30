@@ -3,7 +3,7 @@
 namespace LaravelLangSyncInertia\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use LaravelLangSyncInertia\Services\LangService;
+use LaravelLangSyncInertia\Support\TranslationLoader;
 
 class Lang extends Facade
 {
@@ -14,6 +14,6 @@ class Lang extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return LangService::class;
+        return TranslationLoader::class;
     }
 }

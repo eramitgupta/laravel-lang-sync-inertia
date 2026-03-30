@@ -19,7 +19,7 @@ final class GenerateLangCommand extends Command
         $exportLangPath = (string) config('inertia-lang.output_lang');
 
         if (! File::exists($langBasePath)) {
-            $this->error(sprintf(
+            $this->components->error(sprintf(
                 'Language base path not found: %s',
                 $langBasePath
             ));
@@ -29,7 +29,7 @@ final class GenerateLangCommand extends Command
 
         File::ensureDirectoryExists($exportLangPath);
 
-        $this->info('🔍 Generating frontend language files...');
+        $this->components->info('Generating language files...');
 
         foreach (File::directories($langBasePath) as $localeDir) {
             $locale = basename($localeDir);
@@ -59,8 +59,8 @@ final class GenerateLangCommand extends Command
             }
         }
 
-        $this->info('✅ Language JSON files generated successfully!');
-        $this->line("→ {$exportLangPath}/{locale}/{group}.json");
+        $this->components->info('Language files generated successfully.');
+        $this->line("Generated files are available in: {$exportLangPath}/{locale}/{group}.json");
 
         return self::SUCCESS;
     }

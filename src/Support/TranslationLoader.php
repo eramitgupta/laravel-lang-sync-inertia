@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelLangSyncInertia\Services;
+namespace LaravelLangSyncInertia\Support;
 
-class LangService
+class TranslationLoader
 {
     protected array $loaded = [];
 
