@@ -1,6 +1,4 @@
 
----
-```md
 # Lang Sync Inertia Reference
 
 ## Package Summary
