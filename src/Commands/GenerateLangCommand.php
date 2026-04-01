@@ -29,7 +29,7 @@ final class GenerateLangCommand extends Command
 
         File::ensureDirectoryExists($exportLangPath);
 
-        $this->info('🔍 Generating frontend language files...');
+        $this->info('Generating language files...');
 
         foreach (File::directories($langBasePath) as $localeDir) {
             $locale = basename($localeDir);
@@ -59,8 +59,8 @@ final class GenerateLangCommand extends Command
             }
         }
 
-        $this->info('✅ Language JSON files generated successfully!');
-        $this->line("→ {$exportLangPath}/{locale}/{group}.json");
+        $this->info('Language files generated successfully.');
+        $this->line("Generated files are available in: {$exportLangPath}/{locale}/{group}.json");
 
         return self::SUCCESS;
     }
