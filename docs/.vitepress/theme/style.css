@@ -101,9 +101,16 @@ body {
   line-height: 1;
 }
 
+@media (min-width: 641px) {
+  .VPHero .name {
+    white-space: nowrap;
+  }
+}
+
 .VPHero .text {
+  margin-top: 10px !important;
   max-width: 30ch;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1.15;
 }
 
@@ -524,6 +531,10 @@ body {
 }
 
 @media (min-width: 960px) {
+  .VPHome .VPHero .heading .name.clip {
+    font-size: 45px !important;
+  }
+
   .VPNavBar:not(.home) {
     background-color: #ffffff;
   }
@@ -541,6 +552,28 @@ body {
 }
 
 @media (max-width: 640px) {
+  .VPHero .text {
+    max-width: 16ch;
+    font-size: 1.35rem;
+    line-height: 1.2;
+  }
+
+  .VPHero .image {
+    justify-content: center;
+    padding: 1rem 0 0;
+  }
+
+  .VPHero .image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .VPHero .image-src {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   .hero-tech-card {
     display: grid;
     gap: 0.65rem;
