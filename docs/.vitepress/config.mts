@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
+  base: '/laravel-lang-sync-inertia/',
   title: 'Laravel Lang Sync Inertia',
   description: 'Bridge Laravel translation files to Inertia.js apps with first-class Vue and React support.',
   head: [
