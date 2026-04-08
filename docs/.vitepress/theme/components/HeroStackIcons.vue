@@ -1,6 +1,10 @@
+<script setup lang="ts">
+import { withBase } from 'vitepress'
+</script>
+
 <template>
   <div class="hero-tech-card" aria-label="Supported stack">
-    <a class="hero-tech-cta" href="/introduction">Read docs</a>
+    <a class="hero-tech-cta" :href="withBase('/introduction')">Read docs</a>
     <div class="hero-tech-row">
       <div class="hero-tech-chip hero-tech-chip-laravel" tabindex="0" aria-label="Laravel">
         <svg viewBox="0 0 24 24" aria-hidden="true">
