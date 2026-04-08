@@ -1,0 +1,33 @@
+<svg width="520" height="520" viewBox="0 0 520 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="520" height="520" rx="48" fill="url(#panel)"/>
+  <circle cx="164" cy="176" r="92" fill="url(#leftGlow)"/>
+  <circle cx="356" cy="212" r="106" fill="url(#rightGlow)"/>
+  <circle cx="270" cy="332" r="114" fill="url(#bottomGlow)"/>
+  <rect x="104" y="114" width="312" height="292" rx="28" fill="#FFFFFF" fill-opacity="0.7"/>
+  <rect x="120" y="130" width="280" height="260" rx="22" fill="#FFF9F6"/>
+  <rect x="148" y="170" width="104" height="16" rx="8" fill="#F55247"/>
+  <rect x="148" y="206" width="220" height="12" rx="6" fill="#F9C5BE"/>
+  <rect x="148" y="236" width="184" height="12" rx="6" fill="#F9C5BE"/>
+  <rect x="148" y="288" width="132" height="78" rx="18" fill="#CB2E22"/>
+  <rect x="296" y="288" width="72" height="78" rx="18" fill="#0F766E"/>
+  <path d="M319 151L345 177L319 203" stroke="#F97316" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M225 151L199 177L225 203" stroke="#CB2E22" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <defs>
+    <linearGradient id="panel" x1="42" y1="38" x2="455" y2="486" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF4EF"/>
+      <stop offset="1" stop-color="#FDFBF5"/>
+    </linearGradient>
+    <radialGradient id="leftGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(164 176) rotate(90) scale(92)">
+      <stop stop-color="#F55247" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#F55247" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rightGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(356 212) rotate(90) scale(106)">
+      <stop stop-color="#F97316" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#F97316" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bottomGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(270 332) rotate(90) scale(114)">
+      <stop stop-color="#0F766E" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#0F766E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
