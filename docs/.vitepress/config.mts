@@ -28,7 +28,6 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   themeConfig: {
-    logo: '/logo.svg',
     sidebar: [
       { text: 'Overview', link: '/' },
       { text: 'Introduction', link: '/introduction' },
