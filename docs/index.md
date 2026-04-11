@@ -28,7 +28,7 @@ features:
     details: The package reads `resources/lang/{locale}` based on Laravel's current app locale.
   - icon: "⤴"
     title: Export support
-    details: Generate frontend-ready JSON files from PHP lang files when you need a static output.
+    details: Generate frontend-ready JSON files from PHP lang files, and if an exported JSON is available it loads automatically.
   - icon: "☷"
     title: Minimal API surface
     details: Learn one simple API and use it consistently across backend and frontend.

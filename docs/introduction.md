@@ -29,7 +29,7 @@ The overall goal is simple: keep your translation workflow native to Laravel, bu
 
 When you call `syncLangFiles('auth')` in your controller:
 
-1. Laravel reads `resources/lang/{locale}/auth.php` based on `App::getLocale()`.
+1. Laravel reads `lang/{locale}/auth.php` based on `App::getLocale()`.
 2. The translation array is shared with Inertia under `page.props.lang`.
 3. Your frontend helper reads from `page.props.lang`.
 4. Keys like `auth.greeting` resolve automatically.
@@ -37,7 +37,7 @@ When you call `syncLangFiles('auth')` in your controller:
 
 ```text
 Controller -> syncLangFiles('auth')
-Laravel reads -> resources/lang/en/auth.php
+Laravel reads -> lang/en/auth.php
 Inertia shares -> page.props.lang.auth
 Frontend -> __('auth.greeting') or trans('auth.welcome', { name: 'Amit' })
 Output -> Hello! / Welcome, Amit!
