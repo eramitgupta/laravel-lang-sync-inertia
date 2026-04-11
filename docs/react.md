@@ -45,14 +45,14 @@ class DashboardController extends Controller
 }
 ```
 
-```php [resources/lang/en/auth.php]
+```php [lang/en/auth.php]
 return [
     'greeting' => 'Hello!',
     'welcome' => 'Welcome, {name}!',
 ];
 ```
 
-```tsx [resources/js/Pages/Dashboard.tsx]
+```tsx [js/Pages/Dashboard.tsx]
 import { lang } from '@erag/lang-sync-inertia/react'
 
 export default function Dashboard() {
@@ -93,7 +93,7 @@ export default function Login() {
 
 ## How it works
 
-1. Laravel loads `resources/lang/{locale}/auth.php` with `syncLangFiles('auth')`.
+1. Laravel loads `lang/{locale}/auth.php` with `syncLangFiles('auth')`.
 2. Inertia shares that data under `page.props.lang`.
 3. `lang()` reads from those props inside your React component.
 4. Keys like `auth.greeting` and `auth.welcome` resolve automatically.

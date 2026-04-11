@@ -46,7 +46,7 @@ class DashboardController extends Controller
 }
 ```
 
-```php [resources/lang/en/auth.php]
+```php [lang/en/auth.php]
 return [
     'greeting' => 'Hello!',
     'welcome' => 'Welcome, {name}!',
@@ -60,7 +60,7 @@ trans('auth.welcome', { name: 'Amit' })
 
 ```text [Flow]
 Controller -> syncLangFiles('auth')
-Laravel -> resources/lang/{locale}/auth.php
+Laravel -> lang/{locale}/auth.php
 Inertia -> page.props.lang.auth
 Frontend -> __('auth.greeting')
 Output -> Hello!
@@ -72,7 +72,7 @@ Output -> Hello!
 
 When you call `syncLangFiles('auth')` in your controller:
 
-1. Laravel reads `resources/lang/{locale}/auth.php` based on `App::getLocale()`.
+1. Laravel reads `lang/{locale}/auth.php` based on `App::getLocale()`.
 2. The translation array is passed to Inertia as a shared prop under `page.props.lang`.
 3. The frontend helper reads from `page.props.lang` and resolves keys like `auth.greeting`.
 4. Placeholders like `{name}` are replaced at runtime with the values you pass.

@@ -99,7 +99,7 @@ Choose the package you want to install first.
 
 ::: code-group
 
-```bash [Backend package]
+```bash [Laravel package]
 composer require erag/laravel-lang-sync-inertia
 
 php artisan lang:publish
@@ -107,7 +107,7 @@ php artisan lang:publish
 php artisan erag:install-lang
 ```
 
-```bash [Frontend package]
+```bash [Vue/React package]
 npm install @erag/lang-sync-inertia
 ```
 

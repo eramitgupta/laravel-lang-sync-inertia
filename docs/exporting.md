@@ -21,7 +21,7 @@ The generated files are written to the `output_lang` path from `config/inertia-l
 
 ## Input
 
-File: `resources/lang/en/auth.php`
+File: `lang/en/auth.php`
 
 ```php
 return [

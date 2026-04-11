@@ -57,14 +57,14 @@ class DashboardController extends Controller
 }
 ```
 
-```php [resources/lang/en/auth.php]
+```php [lang/en/auth.php]
 return [
     'greeting' => 'Hello!',
     'welcome' => 'Welcome, {name}!',
 ];
 ```
 
-```vue [resources/js/Pages/Dashboard.vue]
+```vue [js/Pages/Dashboard.vue]
 <script setup>
 import { lang } from '@erag/lang-sync-inertia/vue'
 
@@ -79,7 +79,7 @@ const { trans, __ } = lang()
 </template>
 ```
 
-```tsx [resources/js/Pages/Dashboard.tsx]
+```tsx [js/Pages/Dashboard.tsx]
 import { lang } from '@erag/lang-sync-inertia/react'
 
 export default function Dashboard() {

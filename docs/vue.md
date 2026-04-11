@@ -45,14 +45,14 @@ class DashboardController extends Controller
 }
 ```
 
-```php [resources/lang/en/auth.php]
+```php [lang/en/auth.php]
 return [
     'greeting' => 'Hello!',
     'welcome' => 'Welcome, {name}!',
 ];
 ```
 
-```vue [resources/js/Pages/Dashboard.vue]
+```vue [js/Pages/Dashboard.vue]
 <script setup>
 import { lang } from '@erag/lang-sync-inertia/vue'
 
@@ -91,7 +91,7 @@ const { trans, __ } = lang()
 
 ## How it works
 
-1. Laravel loads `resources/lang/{locale}/auth.php` with `syncLangFiles('auth')`.
+1. Laravel loads `lang/{locale}/auth.php` with `syncLangFiles('auth')`.
 2. Inertia shares that data under `page.props.lang`.
 3. `lang()` reads from those props inside your Vue component.
 4. Keys like `auth.greeting` and `auth.welcome` resolve automatically.
