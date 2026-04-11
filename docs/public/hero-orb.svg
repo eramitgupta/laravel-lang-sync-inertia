@@ -1,33 +1,57 @@
 <svg width="520" height="520" viewBox="0 0 520 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="520" height="520" rx="48" fill="url(#panel)"/>
-  <circle cx="164" cy="176" r="92" fill="url(#leftGlow)"/>
-  <circle cx="356" cy="212" r="106" fill="url(#rightGlow)"/>
-  <circle cx="270" cy="332" r="114" fill="url(#bottomGlow)"/>
-  <rect x="104" y="114" width="312" height="292" rx="28" fill="#FFFFFF" fill-opacity="0.7"/>
-  <rect x="120" y="130" width="280" height="260" rx="22" fill="#FFF9F6"/>
-  <rect x="148" y="170" width="104" height="16" rx="8" fill="#F55247"/>
-  <rect x="148" y="206" width="220" height="12" rx="6" fill="#F9C5BE"/>
-  <rect x="148" y="236" width="184" height="12" rx="6" fill="#F9C5BE"/>
-  <rect x="148" y="288" width="132" height="78" rx="18" fill="#CB2E22"/>
-  <rect x="296" y="288" width="72" height="78" rx="18" fill="#0F766E"/>
-  <path d="M319 151L345 177L319 203" stroke="#F97316" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M225 151L199 177L225 203" stroke="#CB2E22" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="260" cy="264" r="170" fill="url(#orb)"/>
+  <ellipse cx="260" cy="264" rx="126" ry="170" stroke="#F7D7EA" stroke-width="10" opacity="0.95"/>
+  <path d="M90 264H430" stroke="#F7D7EA" stroke-width="10" stroke-linecap="round" opacity="0.95"/>
+  <path d="M260 94V434" stroke="#F7D7EA" stroke-width="10" stroke-linecap="round" opacity="0.95"/>
+  <path d="M128 182C168 208 352 208 392 182" stroke="#F7D7EA" stroke-width="10" stroke-linecap="round" opacity="0.9"/>
+  <path d="M128 346C168 320 352 320 392 346" stroke="#F7D7EA" stroke-width="10" stroke-linecap="round" opacity="0.9"/>
+
+  <g filter="url(#bubbleShadow)">
+    <rect x="116" y="110" width="156" height="114" rx="18" fill="url(#leftBubble)"/>
+    <path d="M182 224L205 255L235 224H182Z" fill="#FFB52E"/>
+    <path d="M180 186L203 132H220L243 186H225L220 174H202L198 186H180ZM206 160H216L211 146L206 160Z" fill="#332F59"/>
+  </g>
+
+  <g filter="url(#bubbleShadow)">
+    <rect x="270" y="266" width="144" height="112" rx="18" fill="url(#rightBubble)"/>
+    <path d="M322 378L350 412L382 378H322Z" fill="#FF5E0A"/>
+    <path d="M319 324H340L341 315C342 303 350 295 363 295C377 295 387 304 387 318C387 331 378 339 366 339H361V351H347V326H362C368 326 373 323 373 317C373 311 368 308 362 308C355 308 350 312 349 319L347 324H319Z" fill="#332F59"/>
+    <rect x="345" y="348" width="17" height="17" rx="8.5" fill="#332F59"/>
+  </g>
+
+  <circle cx="178" cy="168" r="86" fill="url(#glowWarm)" opacity="0.6"/>
+  <circle cx="334" cy="322" r="110" fill="url(#glowCool)" opacity="0.45"/>
+
   <defs>
-    <linearGradient id="panel" x1="42" y1="38" x2="455" y2="486" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFF4EF"/>
-      <stop offset="1" stop-color="#FDFBF5"/>
+    <linearGradient id="orb" x1="116" y1="122" x2="395" y2="406" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF6D5F"/>
+      <stop offset="0.42" stop-color="#FF4B5E"/>
+      <stop offset="1" stop-color="#9553E9"/>
     </linearGradient>
-    <radialGradient id="leftGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(164 176) rotate(90) scale(92)">
-      <stop stop-color="#F55247" stop-opacity="0.28"/>
-      <stop offset="1" stop-color="#F55247" stop-opacity="0"/>
+    <linearGradient id="leftBubble" x1="116" y1="110" x2="272" y2="224" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD65C"/>
+      <stop offset="1" stop-color="#FFB52E"/>
+    </linearGradient>
+    <linearGradient id="rightBubble" x1="270" y1="266" x2="414" y2="378" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF7A1A"/>
+      <stop offset="1" stop-color="#FF4B0A"/>
+    </linearGradient>
+    <radialGradient id="glowWarm" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(178 168) rotate(90) scale(86)">
+      <stop stop-color="#FFB52E"/>
+      <stop offset="1" stop-color="#FFB52E" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="rightGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(356 212) rotate(90) scale(106)">
-      <stop stop-color="#F97316" stop-opacity="0.24"/>
-      <stop offset="1" stop-color="#F97316" stop-opacity="0"/>
+    <radialGradient id="glowCool" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(334 322) rotate(90) scale(110)">
+      <stop stop-color="#9553E9"/>
+      <stop offset="1" stop-color="#9553E9" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="bottomGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(270 332) rotate(90) scale(114)">
-      <stop stop-color="#0F766E" stop-opacity="0.22"/>
-      <stop offset="1" stop-color="#0F766E" stop-opacity="0"/>
-    </radialGradient>
+    <filter id="bubbleShadow" x="76" y="82" width="378" height="370" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="14"/>
+      <feGaussianBlur stdDeviation="20"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.184314 0 0 0 0 0.117647 0 0 0 0 0.313726 0 0 0 0.2 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_heroOrb"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_heroOrb" result="shape"/>
+    </filter>
   </defs>
 </svg>

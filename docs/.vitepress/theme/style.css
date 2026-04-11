@@ -601,6 +601,21 @@ body {
   }
 }
 
+@media (max-width: 959px) {
+  .VPSidebar {
+    background: rgba(255, 249, 248, 0.98);
+    border-right: 1px solid rgba(149, 83, 233, 0.12);
+    box-shadow: 20px 0 48px rgba(15, 23, 42, 0.16);
+    backdrop-filter: blur(18px);
+  }
+
+  .dark .VPSidebar {
+    background: rgba(24, 20, 27, 0.98);
+    border-right: 1px solid rgba(187, 140, 255, 0.16);
+    box-shadow: 20px 0 48px rgba(0, 0, 0, 0.38);
+  }
+}
+
 .VPSidebar {
   background: transparent;
   border-right: 1px solid rgba(149, 83, 233, 0.1);
