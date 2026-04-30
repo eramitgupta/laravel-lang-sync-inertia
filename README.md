@@ -3,6 +3,7 @@
 <p align="center">
 <a href="https://github.com/eramitgupta/laravel-lang-sync-inertia/blob/main/LICENSE"><img src="https://img.shields.io/badge/Licence-MIT-blue" alt="License"></a>
 <a href="https://packagist.org/packages/erag/laravel-lang-sync-inertia"><img src="https://img.shields.io/packagist/v/erag/laravel-lang-sync-inertia?label=Stable" alt="Latest Stable Version"></a>
+  <a href="https://packagist.org/packages/erag/laravel-lang-sync-inertia"><img src="https://badge.laravel.cloud/badge/erag/laravel-lang-sync-inertia" alt="Laravel Compatibility"></a>
 <a href="https://packagist.org/packages/erag/laravel-lang-sync-inertia"><img src="https://img.shields.io/packagist/dt/erag/laravel-lang-sync-inertia.svg?label=Downloads" alt="Total Downloads"></a>
 </p>
 
