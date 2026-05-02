@@ -23,7 +23,6 @@ Thank you for considering contributing to Laravel Lang Sync Inertia.
 
 If you find Laravel Lang Sync Inertia useful, please consider giving it a star on GitHub. It helps the project grow and reach more developers!
 
-👉 https://github.com/eramitgupta/laravel-lang-sync-inertia
 
 ## License
 
