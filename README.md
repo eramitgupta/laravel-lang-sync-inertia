@@ -19,6 +19,12 @@ Documentation for Laravel Lang Sync Inertia can be found at [https://eramitgupta
 
 Thank you for considering contributing to Laravel Lang Sync Inertia.
 
+## Support the Project ⭐
+
+If you find Laravel Lang Sync Inertia useful, please consider giving it a star on GitHub. It helps the project grow and reach more developers!
+
+👉 https://github.com/eramitgupta/laravel-lang-sync-inertia
+
 ## License
 
 Laravel Lang Sync Inertia is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
