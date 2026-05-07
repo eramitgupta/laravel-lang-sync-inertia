@@ -17,7 +17,6 @@ If you discover a **security vulnerability**, **please do NOT open an issue or p
 
 Instead, follow these steps:
 
-1. Email us directly at: [info.eramitgupta@gmail.com](mailto:info.eramitgupta@gmail.com)
 2. Include:
    - Package version
    - Laravel version
