@@ -3,7 +3,7 @@ name: laravel-lang-sync-inertia
 description: "Activate when the user is adding, debugging, or documenting Laravel to Inertia translation syncing with erag/laravel-lang-sync-inertia. Use for syncLangFiles(), Lang facade usage, shared Inertia lang props, generated frontend JSON translations, config/inertia-lang.php, package install or generate commands, Vue or React frontend lang() helpers, pluralization helpers, locale-aware loading, or backward-compatible APIs like vueLang() and reactLang()."
 license: MIT
 metadata:
-  author: laravel
+  author: Er Amit Gupta
 ---
 
 # Laravel Lang Sync Inertia
