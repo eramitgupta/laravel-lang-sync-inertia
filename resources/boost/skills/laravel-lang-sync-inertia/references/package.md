@@ -145,12 +145,7 @@ Frontend helpers read from the shared `lang` prop and expose:
 - `trans()` for replacement-heavy lookups
 - `transChoice()` and `trans_choice()` for pluralization
 
-Legacy imports from the package root still exist for compatibility:
-
-- `vueLang()`
-- `reactLang()`
-
-Prefer the framework-specific entrypoints for new code.
+Use the helper directly in each page or component that needs translations. Do not configure the helper in Vite, `app.ts`, or `app.js`, and do not register it as an Inertia app plugin/provider.
 
 ## Configuration
 
@@ -177,5 +172,5 @@ For a typical host app:
 3. Publish Laravel language files if needed.
 4. Run `php artisan erag:install-lang`.
 5. Call `syncLangFiles()` in each Inertia controller action that needs translations.
-6. Import `lang()` from the correct Vue or React entrypoint.
+6. Import `lang()` directly inside each Vue or React page/component that needs translations.
 7. Optionally run `php artisan erag:generate-lang` for build-time JSON output.

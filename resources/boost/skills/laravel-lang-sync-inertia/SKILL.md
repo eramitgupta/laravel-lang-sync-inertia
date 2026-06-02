@@ -1,6 +1,6 @@
 ---
 name: laravel-lang-sync-inertia
-description: "Activate when the user is adding, debugging, or documenting Laravel to Inertia translation syncing with erag/laravel-lang-sync-inertia. Use for syncLangFiles(), Lang facade usage, shared Inertia lang props, generated frontend JSON translations, config/inertia-lang.php, package install or generate commands, Vue or React frontend lang() helpers, pluralization helpers, locale-aware loading, or backward-compatible APIs like vueLang() and reactLang()."
+description: "Activate when the user is adding, debugging, or documenting Laravel to Inertia translation syncing with erag/laravel-lang-sync-inertia. Use for syncLangFiles(), Lang facade usage, shared Inertia lang props, generated frontend JSON translations, config/inertia-lang.php, package install or generate commands, Vue or React frontend lang() helpers, pluralization helpers, and locale-aware loading."
 license: MIT
 metadata:
   author: Er Amit Gupta
@@ -39,7 +39,7 @@ Load only the reference file you need:
 4. Choose one loading strategy:
    - call `syncLangFiles()` inside the controller action before returning `Inertia::render(...)`, or
    - run `php artisan erag:generate-lang` to generate JSON translation files for the configured output path
-5. Read translations on the frontend with `lang()` from `@erag/lang-sync-inertia/vue` or `@erag/lang-sync-inertia/react`.
+5. Read translations directly inside each Vue or React page/component with `lang()` from `@erag/lang-sync-inertia/vue` or `@erag/lang-sync-inertia/react`.
 
 ## Important Behavior
 
@@ -54,9 +54,9 @@ Load only the reference file you need:
 - Vue and React consumers should prefer the dedicated entrypoints:
   - `@erag/lang-sync-inertia/vue`
   - `@erag/lang-sync-inertia/react`
-- The package keeps legacy compatibility helpers available through the root package import:
-  - `vueLang()`
-  - `reactLang()`
+- Do not configure this package in Vite, `app.ts`, or `app.js`.
+- Do not register an Inertia app plugin/provider for frontend translation helpers.
+- Import `lang()` in the page or component that needs translations.
 - Frontend helpers support:
   - `__()`
   - `trans()`

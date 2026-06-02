@@ -103,6 +103,8 @@ Frontend code should treat `lang` as the translation root for helper lookups lik
 
 The companion frontend package exposes dedicated framework entrypoints:
 
+Use these helpers directly inside the Vue or React page/component that needs translations. Do not configure this package in Vite, `app.ts`, or `app.js`.
+
 ### Vue
 
 ```ts
@@ -153,17 +155,6 @@ Pluralization helpers.
 transChoice('auth.notifications', 3);
 trans_choice('auth.notifications', 0);
 ```
-
-## Legacy Frontend API
-
-Older code can still import from the package root:
-
-```ts
-import { vueLang } from '@erag/lang-sync-inertia';
-import { reactLang } from '@erag/lang-sync-inertia';
-```
-
-Prefer `/vue` and `/react` entrypoints for new code.
 
 ## Commands
 

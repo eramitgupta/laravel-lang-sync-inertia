@@ -88,6 +88,8 @@ return [
 
 ## Vue Example
 
+Use the helper directly inside the Vue page or component. Do not configure Vite, `app.ts`, or `app.js`.
+
 ```vue
 <script setup lang="ts">
 import { lang } from '@erag/lang-sync-inertia/vue';
@@ -117,6 +119,8 @@ No notifications
 ```
 
 ## React Example
+
+Use the helper directly inside the React page or component. Do not configure Vite, `app.ts`, or `app.js`.
 
 ```tsx
 import { lang } from '@erag/lang-sync-inertia/react';
@@ -201,20 +205,4 @@ Location:
 
 ```text
 {output_lang}/en/auth.json
-```
-
-## Legacy Import Example
-
-The root package import still works for older codebases:
-
-```ts
-import { vueLang } from '@erag/lang-sync-inertia';
-
-const { __, trans } = vueLang();
-```
-
-```tsx
-import { reactLang } from '@erag/lang-sync-inertia';
-
-const { __, trans } = reactLang();
 ```
