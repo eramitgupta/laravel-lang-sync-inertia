@@ -13,7 +13,7 @@ Laravel Lang Sync Inertia is a lightweight package for sharing Laravel translati
 
 ## Documentation
 
-Documentation for Laravel Lang Sync Inertia can be found at [https://eramitgupta.github.io/laravel-lang-sync-inertia/](https://eramitgupta.github.io/laravel-lang-sync-inertia/).
+Documentation for Laravel Lang Sync Inertia can be found at https://erag.in/laravel-lang-sync-inertia/.
 
 ## Contributing
 
