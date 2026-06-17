@@ -103,7 +103,7 @@ Frontend code should treat `lang` as the translation root for helper lookups lik
 
 The companion frontend package exposes dedicated framework entrypoints:
 
-Use these helpers directly inside the Vue or React page/component that needs translations. Do not configure this package in Vite, `app.ts`, or `app.js`.
+Use these helpers directly inside the Vue, React, or Svelte page/component that needs translations. Do not configure this package in Vite, `app.ts`, or `app.js`.
 
 ### Vue
 
@@ -116,6 +116,14 @@ import { lang } from '@erag/lang-sync-inertia/vue';
 ```tsx
 import { lang } from '@erag/lang-sync-inertia/react';
 ```
+
+### Svelte
+
+```ts
+import { lang } from '@erag/lang-sync-inertia/svelte';
+```
+
+Requires `@inertiajs/svelte` v3 (Svelte 5). The `page` reactive state from `@inertiajs/svelte` is read at call time, so helpers work correctly inside `$derived` expressions and reactive contexts.
 
 The `lang()` helper returns methods including:
 

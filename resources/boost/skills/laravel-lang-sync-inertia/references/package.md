@@ -138,6 +138,7 @@ The package is designed for the companion NPM package:
 
 - `@erag/lang-sync-inertia/vue`
 - `@erag/lang-sync-inertia/react`
+- `@erag/lang-sync-inertia/svelte`
 
 Frontend helpers read from the shared `lang` prop and expose:
 
@@ -145,7 +146,7 @@ Frontend helpers read from the shared `lang` prop and expose:
 - `trans()` for replacement-heavy lookups
 - `transChoice()` and `trans_choice()` for pluralization
 
-Use the helper directly in each page or component that needs translations. Do not configure the helper in Vite, `app.ts`, or `app.js`, and do not register it as an Inertia app plugin/provider.
+Use the helper directly in each page or component that needs translations. Do not configure the helper in Vite, `app.ts`, or `app.js`, and do not register it as an Inertia app plugin/provider. For Svelte, requires `@inertiajs/svelte` v3 (Svelte 5).
 
 ## Configuration
 
@@ -172,5 +173,5 @@ For a typical host app:
 3. Publish Laravel language files if needed.
 4. Run `php artisan erag:install-lang`.
 5. Call `syncLangFiles()` in each Inertia controller action that needs translations.
-6. Import `lang()` directly inside each Vue or React page/component that needs translations.
+6. Import `lang()` directly inside each Vue, React, or Svelte page/component that needs translations.
 7. Optionally run `php artisan erag:generate-lang` for build-time JSON output.
