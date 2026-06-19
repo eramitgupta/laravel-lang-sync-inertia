@@ -143,7 +143,7 @@ export default function Dashboard() {
 Use the helper directly inside the Svelte page or component. Do not configure Vite, `app.ts`, or `app.js`. Requires `@inertiajs/svelte` v3 (Svelte 5).
 
 ```svelte
-<script lang="ts">
+<script module lang="ts">
 import { lang } from '@erag/lang-sync-inertia/svelte';
 
 const { __, trans, transChoice } = lang();
