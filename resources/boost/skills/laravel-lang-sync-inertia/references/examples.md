@@ -138,6 +138,24 @@ export default function Dashboard() {
 }
 ```
 
+## Svelte Example
+
+Use the helper directly inside the Svelte page or component. Do not configure Vite, `app.ts`, or `app.js`. Requires `@inertiajs/svelte` v3 (Svelte 5).
+
+```svelte
+<script module lang="ts">
+import { lang } from '@erag/lang-sync-inertia/svelte';
+
+const { __, trans, transChoice } = lang();
+</script>
+
+<section>
+    <h1>{__('auth.greeting')}</h1>
+    <p>{trans('auth.welcome', { name: 'Amit' })}</p>
+    <p>{transChoice('auth.notifications', 3)}</p>
+</section>
+```
+
 ## Multiple Group Example
 
 Load multiple translation groups when the page uses more than one namespace:
@@ -172,6 +190,12 @@ const { lang } = usePage().props;
 import { usePage } from '@inertiajs/react';
 
 const { lang } = usePage().props;
+```
+
+```ts
+import { page } from '@inertiajs/svelte';
+
+const lang = $derived(page.props.lang);
 ```
 
 ## JSON Export Example

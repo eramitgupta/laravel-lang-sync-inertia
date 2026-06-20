@@ -9,7 +9,7 @@
 
 ## About Laravel Lang Sync Inertia
 
-Laravel Lang Sync Inertia is a lightweight package for sharing Laravel translation files with Inertia.js applications. It provides a simple way to make backend language files available inside Vue 3 and React pages without manually passing translation props in every response.
+Laravel Lang Sync Inertia is a lightweight package for sharing Laravel translation files with Inertia.js applications. It provides a simple way to make backend language files available inside Vue 3, React, and Svelte pages without manually passing translation props in every response.
 
 ## Documentation
 
