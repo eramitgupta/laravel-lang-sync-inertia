@@ -14,27 +14,11 @@ trait NestsTranslationPaths
      */
     protected function segmentsFromReference(string $reference): array
     {
-        if (str_contains($reference, '/') || str_contains($reference, '\\')) {
+        if (! preg_match('/^[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*$/', $reference)) {
             return [];
         }
 
-        return array_values(array_filter(
-            preg_split('#[.]+#', $reference) ?: [],
-            static fn ($segment) => $segment !== ''
-        ));
-    }
-
-    /**
-     * Split a generated language file path into its directory segments.
-     *
-     * @return array<int, string>
-     */
-    protected function segmentsFromRelativePath(string $path): array
-    {
-        return array_values(array_filter(
-            preg_split('#[/\\\\]+#', $path) ?: [],
-            static fn ($segment) => $segment !== ''
-        ));
+        return explode('.', $reference);
     }
 
     /**

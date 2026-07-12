@@ -39,7 +39,10 @@ class GeneratedLangJsonLoader
             }
 
             $relative = substr($file->getRelativePathname(), 0, -5);
-            $segments = $this->segmentsFromRelativePath($relative);
+            $segments = array_values(array_filter(
+                explode(DIRECTORY_SEPARATOR, $relative),
+                static fn ($segment) => $segment !== ''
+            ));
 
             $tree = array_replace_recursive(
                 $tree,
