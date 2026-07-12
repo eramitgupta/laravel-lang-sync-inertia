@@ -20,12 +20,12 @@ syncLangFiles(['auth', 'validation', 'pagination']);
 ```
 
 Nested translation groups are supported. Reference a nested file using dot
-(`admin.users`) or slash (`admin/users`) notation. The group is loaded from
+notation (`admin.users`). The group is loaded from
 `lang/{locale}/admin/users.php` and nested to mirror the reference:
 
 ```php
 syncLangFiles('admin.users');
-syncLangFiles(['admin.users', 'admin/roles']);
+syncLangFiles(['admin.users', 'admin.roles']);
 ```
 
 Return shape:
@@ -85,15 +85,15 @@ Returns all groups already loaded in the current request.
 config('inertia-lang.lang_path', lang_path()) . '/' . app()->getLocale() . '/{group}.php'
 ```
 
-`{group}` may be nested. A reference like `admin.users` (or `admin/users`)
-reads `lang/{locale}/admin/users.php`.
+`{group}` may be nested. A reference like `admin.users` reads
+`lang/{locale}/admin/users.php`.
 
 Behavior:
 
 - caches loaded groups in memory for the current request
 - returns `[]` for missing group files
 - supports one group or many groups
-- supports nested groups via dot or slash notation, nesting the result to
+- supports nested groups via dot notation, nesting the result to
   mirror the reference (`admin.users` => `['admin' => ['users' => [...]]]`)
 
 ## Shared Inertia Prop

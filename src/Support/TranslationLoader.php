@@ -24,8 +24,8 @@ class TranslationLoader
      * Load a single translation group.
      *
      * The reference may point at a nested group using dot ("admin.users")
-     * or slash ("admin/users") notation. The returned array is nested to
-     * mirror the reference, so "admin.users" resolves to
+     * notation. The returned array is nested to mirror the reference, so
+     * "admin.users" resolves to
      * ['admin' => ['users' => [...]]].
      *
      * @return array<string, mixed>
@@ -40,6 +40,11 @@ class TranslationLoader
         $basePath = rtrim(config('inertia-lang.lang_path', lang_path()), '/');
 
         $segments = $this->segmentsFromReference($file);
+
+        if ($segments === []) {
+            return [];
+        }
+
         $relative = implode(DIRECTORY_SEPARATOR, $segments);
         $path = "{$basePath}/{$lang}/{$relative}.php";
 

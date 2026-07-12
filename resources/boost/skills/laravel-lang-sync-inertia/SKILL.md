@@ -44,7 +44,7 @@ Load only the reference file you need:
 ## Important Behavior
 
 - `syncLangFiles(string|array $fileName)` loads one or many Laravel translation groups for the current locale.
-- Nested groups are supported via dot or slash notation, e.g. `syncLangFiles('admin.users')` reads `lang/{locale}/admin/users.php` and nests the result so the frontend resolves it with `__('admin.users.name')`.
+- Nested groups are supported via dot notation, e.g. `syncLangFiles('admin.users')` reads `lang/{locale}/admin/users.php` and nests the result so the frontend resolves it with `__('admin.users.name')`.
 - The package shares translations under the `lang` Inertia prop.
 - `TranslationLoader` reads from `config('inertia-lang.lang_path')` and caches loaded groups in memory for the request.
 - `LangSyncInertiaServiceProvider` automatically loads generated JSON files (recursively, mirroring nested folders) from `config('inertia-lang.output_lang')/{locale}`.
