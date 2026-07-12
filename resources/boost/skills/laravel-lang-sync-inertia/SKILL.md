@@ -44,9 +44,10 @@ Load only the reference file you need:
 ## Important Behavior
 
 - `syncLangFiles(string|array $fileName)` loads one or many Laravel translation groups for the current locale.
+- Nested groups are supported via dot or slash notation, e.g. `syncLangFiles('admin.users')` reads `lang/{locale}/admin/users.php` and nests the result so the frontend resolves it with `__('admin.users.name')`.
 - The package shares translations under the `lang` Inertia prop.
 - `TranslationLoader` reads from `config('inertia-lang.lang_path')` and caches loaded groups in memory for the request.
-- `LangSyncInertiaServiceProvider` automatically loads generated JSON files from `config('inertia-lang.output_lang')/{locale}/*.json`.
+- `LangSyncInertiaServiceProvider` automatically loads generated JSON files (recursively, mirroring nested folders) from `config('inertia-lang.output_lang')/{locale}`.
 - After `php artisan erag:generate-lang`, you do not add any extra app code for JSON loading. The package reads all generated JSON files for the current locale during the normal Inertia share flow in `LangSyncInertiaServiceProvider`.
 - When generated JSON files are present, the package auto-loads all generated translation groups for the current locale. You do not need to call `syncLangFiles()` for those generated groups.
 - Generated JSON translations are merged first and runtime-loaded translations win on conflicts through `array_replace_recursive`.

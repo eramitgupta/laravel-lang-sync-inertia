@@ -37,20 +37,29 @@ final class GenerateLangCommand extends Command
 
             File::ensureDirectoryExists($localeExportPath);
 
-            foreach (File::files($localeDir) as $file) {
+            foreach (File::allFiles($localeDir) as $file) {
                 if ($file->getExtension() !== 'php') {
                     continue;
                 }
 
-                $group = $file->getFilenameWithoutExtension();
                 $content = require $file->getRealPath();
 
                 if (! is_array($content)) {
                     continue;
                 }
 
+                $relativeJson = preg_replace(
+                    '/\.php$/',
+                    '.json',
+                    $file->getRelativePathname()
+                );
+
+                $targetPath = $localeExportPath.DIRECTORY_SEPARATOR.$relativeJson;
+
+                File::ensureDirectoryExists(dirname($targetPath));
+
                 File::put(
-                    $localeExportPath.DIRECTORY_SEPARATOR."{$group}.json",
+                    $targetPath,
                     json_encode(
                         $content,
                         JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE

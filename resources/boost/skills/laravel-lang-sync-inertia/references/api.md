@@ -19,6 +19,15 @@ syncLangFiles('auth');
 syncLangFiles(['auth', 'validation', 'pagination']);
 ```
 
+Nested translation groups are supported. Reference a nested file using dot
+(`admin.users`) or slash (`admin/users`) notation. The group is loaded from
+`lang/{locale}/admin/users.php` and nested to mirror the reference:
+
+```php
+syncLangFiles('admin.users');
+syncLangFiles(['admin.users', 'admin/roles']);
+```
+
 Return shape:
 
 ```php
@@ -26,8 +35,16 @@ Return shape:
     'auth' => [
         'failed' => 'These credentials do not match our records.',
     ],
+    'admin' => [
+        'users' => [
+            'name' => 'Name',
+        ],
+    ],
 ]
 ```
+
+Nested groups resolve on the frontend with the full key path, e.g.
+`__('admin.users.name')`.
 
 ## Facade API
 
@@ -49,7 +66,8 @@ Loads one translation group for the current locale.
 Lang::getFile(string|array $file): array
 ```
 
-Loads one or many translation groups and returns them grouped by filename.
+Loads one or many translation groups and returns the merged, nested
+translation tree for everything loaded so far in the request.
 
 ### `Lang::getLoaded()`
 
@@ -67,11 +85,16 @@ Returns all groups already loaded in the current request.
 config('inertia-lang.lang_path', lang_path()) . '/' . app()->getLocale() . '/{group}.php'
 ```
 
+`{group}` may be nested. A reference like `admin.users` (or `admin/users`)
+reads `lang/{locale}/admin/users.php`.
+
 Behavior:
 
 - caches loaded groups in memory for the current request
 - returns `[]` for missing group files
 - supports one group or many groups
+- supports nested groups via dot or slash notation, nesting the result to
+  mirror the reference (`admin.users` => `['admin' => ['users' => [...]]]`)
 
 ## Shared Inertia Prop
 
@@ -192,6 +215,10 @@ Output location:
 ```text
 {output_lang}/{locale}/{group}.json
 ```
+
+Nested translation directories are scanned recursively and the output folder
+tree mirrors the source, e.g. `lang/{locale}/admin/users.php` generates
+`{output_lang}/{locale}/admin/users.json`.
 
 ## Configuration API
 

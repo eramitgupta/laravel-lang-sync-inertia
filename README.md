@@ -15,6 +15,7 @@ Laravel Lang Sync Inertia is a lightweight package for sharing Laravel translati
 
 - 🔄 Automatic translation sharing through Inertia.js shared props.
 - 📦 Load single or multiple Laravel language files with `syncLangFiles()`.
+- 🗂️ Nested language directories via dot or slash notation, e.g. `syncLangFiles('admin.users')` → `__('admin.users.name')`.
 - 🧩 Dedicated Vue 3, React, and Svelte helpers from `@erag/lang-sync-inertia`.
 - 📝 Use clean frontend helpers like `__()`, `trans()`, `transChoice()`, and `trans_choice()`.
 - ✨ Laravel-style placeholder replacement with `:name` values.

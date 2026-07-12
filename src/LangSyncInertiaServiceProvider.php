@@ -4,13 +4,13 @@ namespace LaravelLangSyncInertia;
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 use LaravelLangSyncInertia\Commands\GenerateLangCommand;
 use LaravelLangSyncInertia\Commands\InstallLangCommand;
 use LaravelLangSyncInertia\Facades\Lang;
 use LaravelLangSyncInertia\Middleware\ShareLangTranslations;
+use LaravelLangSyncInertia\Support\GeneratedLangJsonLoader;
 
 class LangSyncInertiaServiceProvider extends ServiceProvider
 {
@@ -82,38 +82,11 @@ class LangSyncInertiaServiceProvider extends ServiceProvider
 
             $runtimeLang = Lang::getLoaded();
 
-            $jsonLang = $this->loadGeneratedLangJson($locale);
+            $jsonLang = app(GeneratedLangJsonLoader::class)->load($locale);
 
             return $jsonLang
                 ? array_replace_recursive($jsonLang, $runtimeLang)
                 : $runtimeLang;
         });
-    }
-
-    private function loadGeneratedLangJson(string $locale): array
-    {
-        $basePath = rtrim(
-            (string) config('inertia-lang.output_lang'),
-            DIRECTORY_SEPARATOR
-        );
-        $localePath = $basePath.DIRECTORY_SEPARATOR.$locale;
-
-        if (! File::isDirectory($localePath)) {
-            return [];
-        }
-
-        $jsonFiles = File::glob($localePath.DIRECTORY_SEPARATOR.'*.json');
-
-        return collect($jsonFiles)
-            ->mapWithKeys(function ($file) {
-                $key = pathinfo($file, PATHINFO_FILENAME);
-                $content = File::get($file);
-                $decoded = json_decode($content, true);
-
-                return (json_last_error() === JSON_ERROR_NONE && is_array($decoded))
-                    ? [$key => $decoded]
-                    : [];
-            })
-            ->all();
     }
 }
