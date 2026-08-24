@@ -33,7 +33,7 @@ class LangSyncInertiaServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(
             __DIR__.'/../config/inertia-lang.php',
-            'lang-manager'
+            'inertia-lang'
         );
     }
 
