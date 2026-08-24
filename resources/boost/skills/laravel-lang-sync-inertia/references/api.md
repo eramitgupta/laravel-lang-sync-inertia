@@ -46,6 +46,11 @@ Return shape:
 Nested groups resolve on the frontend with the full key path, e.g.
 `__('admin.users.name')`.
 
+Laravel's backend translation helper addresses the source file using `/` for
+the nested directory. The equivalent Laravel lookup is
+`__('admin/users.name')`. Do not use the package's dot-notated file reference
+as the Laravel backend translation key.
+
 ## Facade API
 
 The package alias `Lang` maps to `LaravelLangSyncInertia\Facades\Lang`, which resolves `LaravelLangSyncInertia\Support\TranslationLoader`.
